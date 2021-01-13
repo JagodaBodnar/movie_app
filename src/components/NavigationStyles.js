@@ -1,0 +1,77 @@
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { GiFilmSpool } from "react-icons/gi";
+
+export const StyledNavigationContainer = styled.div`
+  width: 100%;
+  display: flex;
+  margin: 50px auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+`;
+export const StyledTitle = styled.h1`
+  color: ${({ theme }) => theme.cream};
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: left;
+  margin-left: 2%;
+  width: 30%;
+  font-family: "Dancing Script", cursive;
+`;
+export const StyledIcon = styled(GiFilmSpool)`
+  color: ${({ theme }) => theme.main};
+  font-size: 75px;
+`;
+export const StyledLinkContainer = styled.div`
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+`;
+
+export const StyledLinks = styled(Link)`
+  text-decoration: none;
+  font-size: 20px;
+  color: ${({ theme }) => theme.cream};
+  margin: 20px;
+  width: 100%;
+  &:hover {
+    color: ${({ theme }) => theme.main};
+  }
+`;
+export const StyledLinksCategories = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.cream};
+  width: 100%;
+  &:hover {
+    color: ${({ theme }) => theme.hover};
+  }
+  margin-top: 15px;
+  font-size: 15px;
+  letter-spacing: 2px;
+`;
+export const StyledDropdownList = styled.div`
+  display: none;
+  position: absolute;
+  width: 100%;
+`;
+export const StyledMoviesList = styled.ul`
+  font-size: 20px;
+  width: 100%;
+  margin: 20px;
+  color: ${({ theme }) => theme.cream};
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    color: ${({ theme }) => theme.main};
+  }
+  &:hover > ${StyledDropdownList} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
