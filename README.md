@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[DEMO](https://serene-fermat-cdd88d.netlify.app)
+[DEMO](https://angry-lovelace-fdb20f.netlify.app/)
 
 ## Available Scripts
 
