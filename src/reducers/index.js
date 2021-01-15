@@ -46,20 +46,27 @@ const moviesReducer = (state = initialState, action) => {
       };
     case ADD_MOVIE_TO_FAVOURITE:
       const addedMovie = state.movies.filter((item) => {
-        item.adult = true;
+        if (item.title === payload) {
+          item.adult = true;
+        }
         return item.title === payload;
       });
       return {
         ...state,
         favourite: [...new Set([...state.favourite, ...addedMovie])],
+        movies: [...state.movies],
       };
     case ADD_POPULAR_MOVIE_TO_FAVOURITE:
       const addedPopularMovie = state.popularMovies.filter((item) => {
+        if (item.title === payload) {
+          item.adult = true;
+        }
         return item.title === payload;
       });
       return {
         ...state,
         favourite: [...new Set([...state.favourite, ...addedPopularMovie])],
+        popularMovies: [...state.popularMovies],
       };
     case ADD_TV_SHOW_TO_FAVOURITE:
       const addedTVShow = state.tvShows.filter((item) => {
@@ -71,21 +78,36 @@ const moviesReducer = (state = initialState, action) => {
       };
     case ADD_NOW_PLAYING_TO_FAVOURITE:
       const addedNowPlaying = state.nowPlaying.filter((item) => {
+        if (item.title === payload) {
+          item.adult = true;
+        }
         return item.title === payload;
       });
       return {
         ...state,
         favourite: [...new Set([...state.favourite, ...addedNowPlaying])],
+        nowPlaying: [...state.nowPlaying],
       };
     case REMOVE_MOVIE_FROM_FAVOURITE:
       const remainedMovies = state.favourite.filter((item) => {
-        item.adult = false;
-        return item.title !== payload;
+        if (item.title) {
+          if (item.title === payload) {
+            item.adult = false;
+          }
+          return item.title !== payload;
+        } else if (item.original_name) {
+          return item.original_name !== payload;
+        }
+        return item;
       });
       return {
         ...state,
         favourite: [...new Set([...remainedMovies])],
+        movies: [...state.movies],
+        popularMovies: [...state.popularMovies],
+        nowPlaying: [...state.nowPlaying],
       };
+
     default:
       return {
         ...state,

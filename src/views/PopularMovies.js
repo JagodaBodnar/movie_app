@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addPopularMovieToFavourite } from "../actions";
+import {
+  addPopularMovieToFavourite,
+  removeMovieFromFavourite,
+} from "../actions";
 import { FaHeart } from "react-icons/fa";
 import {
   StyledTitleContainer,
@@ -14,13 +16,17 @@ import {
   StyledMoviesListContainer,
   StyledVoteParagraph,
   StyledStarIcon,
+  StyledFavouriteOn,
 } from "./ViewsStyles";
 import Pagination from "../components/Pagination";
+import { useDispatch, useSelector } from "react-redux";
 
-const PopularMovies = ({ popularMovies, addPopularMovieToFavourite }) => {
+const PopularMovies = () => {
+  const popularMovies = useSelector((state) => state.popularMovies);
   popularMovies.sort((item, item2) => {
     return item2.vote_average - item.vote_average;
   });
+
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage] = useState(8);
   const indexOfLastMovie = currentPage * moviesPerPage;
@@ -29,8 +35,25 @@ const PopularMovies = ({ popularMovies, addPopularMovieToFavourite }) => {
     indexOfFirstMovie,
     indexOfLastMovie
   );
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const dispatch = useDispatch();
+  const handleFavourite = (title) => {
+    popularMovies.map((item) => {
+      if (item.title === title) {
+        if (item.adult === true) {
+          console.log("imhere");
+          return dispatch(removeMovieFromFavourite(title));
+        } else if (item.adult === false) {
+          console.log("inope ere");
+          return dispatch(addPopularMovieToFavourite(title));
+        }
+      }
+      return item;
+    });
   };
   return (
     <>
@@ -45,6 +68,7 @@ const PopularMovies = ({ popularMovies, addPopularMovieToFavourite }) => {
       <StyledMoviesList>
         {currentMovies.map((item) => {
           const {
+            adult,
             title,
             release_date,
             vote_average,
@@ -80,9 +104,11 @@ const PopularMovies = ({ popularMovies, addPopularMovieToFavourite }) => {
                     {vote_average}
                   </StyledVoteParagraph>
                   <StyledButton
-                    onClick={() => addPopularMovieToFavourite(title)}
+                    onClick={() => {
+                      handleFavourite(title);
+                    }}
                   >
-                    <FaHeart />
+                    {adult ? <StyledFavouriteOn /> : <FaHeart />}
                   </StyledButton>
                 </StyledDetails>
               </StyledDetailsContainer>
@@ -94,16 +120,4 @@ const PopularMovies = ({ popularMovies, addPopularMovieToFavourite }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    popularMovies: state.popularMovies,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addPopularMovieToFavourite: (movie) =>
-      dispatch(addPopularMovieToFavourite(movie)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PopularMovies);
+export default PopularMovies;

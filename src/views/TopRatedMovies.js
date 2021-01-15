@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addMovieToFavourite } from "../actions";
+import { addMovieToFavourite, removeMovieFromFavourite } from "../actions";
 import { FaHeart } from "react-icons/fa";
 import {
   StyledMovieImage,
@@ -14,10 +13,15 @@ import {
   StyledSectionTitle,
   StyledVoteParagraph,
   StyledStarIcon,
+  StyledDetailsTitle,
+  StyledFavouriteOn,
 } from "./ViewsStyles";
 import Pagination from "../components/Pagination";
+import { useDispatch, useSelector } from "react-redux";
 
-const TopRatedMovies = ({ movies, addMovieToFavourite }) => {
+const TopRatedMovies = () => {
+  const movies = useSelector((state) => state.movies);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage] = useState(8);
   const indexOfLastMovie = currentPage * moviesPerPage;
@@ -25,6 +29,20 @@ const TopRatedMovies = ({ movies, addMovieToFavourite }) => {
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const dispatch = useDispatch();
+  const handleFavourite = (title) => {
+    movies.map((item) => {
+      if (item.title === title) {
+        if (item.adult === true) {
+          return dispatch(removeMovieFromFavourite(title));
+        } else if (item.adult === false) {
+          return dispatch(addMovieToFavourite(title));
+        }
+      }
+      return item;
+    });
   };
 
   return (
@@ -46,6 +64,7 @@ const TopRatedMovies = ({ movies, addMovieToFavourite }) => {
             poster_path,
             id,
             overview,
+            adult,
           } = item;
           return (
             <StyledMoviesListContainer key={id}>
@@ -68,14 +87,18 @@ const TopRatedMovies = ({ movies, addMovieToFavourite }) => {
                 />
               </StyledMovieImage>
               <StyledDetailsContainer>
-                <StyledDetails>{title}</StyledDetails>
+                <StyledDetailsTitle>{title}</StyledDetailsTitle>
                 <StyledDetails>
                   <StyledVoteParagraph>
                     <StyledStarIcon />
                     {vote_average}
                   </StyledVoteParagraph>
-                  <StyledButton onClick={() => addMovieToFavourite(title)}>
-                    <FaHeart />
+                  <StyledButton
+                    onClick={() => {
+                      handleFavourite(title);
+                    }}
+                  >
+                    {adult ? <StyledFavouriteOn /> : <FaHeart />}
                   </StyledButton>
                 </StyledDetails>
               </StyledDetailsContainer>
@@ -86,15 +109,5 @@ const TopRatedMovies = ({ movies, addMovieToFavourite }) => {
     </>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addMovieToFavourite: (movie) => dispatch(addMovieToFavourite(movie)),
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopRatedMovies);
+export default TopRatedMovies;

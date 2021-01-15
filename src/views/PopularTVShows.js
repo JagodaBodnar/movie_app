@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import { addTVShowToFavourite } from "../actions";
 import { FaHeart } from "react-icons/fa";
 import {
@@ -16,8 +15,10 @@ import {
   StyledStarIcon,
 } from "./ViewsStyles";
 import Pagination from "../components/Pagination";
+import { useDispatch, useSelector } from "react-redux";
 
-const PopularTVShows = ({ tvShows, addTVShowToFavourite }) => {
+const PopularTVShows = () => {
+  const tvShows = useSelector((state) => state.tvShows);
   tvShows.sort((item, item2) => {
     return item2.vote_average - item.vote_average;
   });
@@ -29,6 +30,7 @@ const PopularTVShows = ({ tvShows, addTVShowToFavourite }) => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -78,7 +80,9 @@ const PopularTVShows = ({ tvShows, addTVShowToFavourite }) => {
                     {vote_average}
                   </StyledVoteParagraph>
                   <StyledButton
-                    onClick={() => addTVShowToFavourite(original_name)}
+                    onClick={() =>
+                      dispatch(addTVShowToFavourite(original_name))
+                    }
                   >
                     <FaHeart />
                   </StyledButton>
@@ -91,15 +95,5 @@ const PopularTVShows = ({ tvShows, addTVShowToFavourite }) => {
     </>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    tvShows: state.tvShows,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTVShowToFavourite: (movie) => dispatch(addTVShowToFavourite(movie)),
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopularTVShows);
+export default PopularTVShows;

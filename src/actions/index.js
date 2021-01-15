@@ -64,9 +64,9 @@ export const addNowPlayingToFavourite = (tvShow) => {
   };
 };
 
-export const removeMovieFromFavourite = (tvShow) => {
+export const removeMovieFromFavourite = (movie) => {
   return {
     type: REMOVE_MOVIE_FROM_FAVOURITE,
-    payload: tvShow,
+    payload: movie,
   };
 };

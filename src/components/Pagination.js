@@ -18,7 +18,7 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
       {pageNumbers.map((pageNumber) => {
         return (
           <StyledPageNumber key={pageNumber}>
-            <a onClick={() => paginate(pageNumber)}>{pageNumber}</a>
+            <p onClick={() => paginate(pageNumber)}>{pageNumber}</p>
           </StyledPageNumber>
         );
       })}

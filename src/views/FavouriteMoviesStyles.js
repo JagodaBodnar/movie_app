@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { device } from "../globalStyles/device";
 
 export const StyledTitleContainer = styled.div`
   width: 80%;
@@ -40,7 +41,7 @@ export const StyledMoviesList = styled.ul`
   width: 80%;
   margin: 50px auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 20px;
   align-items: center;
@@ -56,9 +57,12 @@ export const StyledImg = styled.img`
 export const StyledDetails = styled.li`
   color: ${({ theme }) => theme.cream};
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 14px;
   list-style: none;
   width: 100%;
+  @media ${device.tablet} {
+    font-size: 18px;
+  }
 `;
 export const StyledButton = styled.button`
   width: 200px;
@@ -78,6 +82,13 @@ export const StyledDetailsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  @media ${device.tablet} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media ${device.laptop} {
+    text-align: left;
+  }
 `;
 
 export const StyledLinks = styled(Link)`
@@ -96,4 +107,16 @@ export const StyledLabel = styled.p`
 export const StyledStarIcon = styled(FaStar)`
   margin-right: 10px;
   color: ${({ theme }) => theme.star};
+`;
+
+export const StyledFavouriteContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+  align-items: center;
+  justify-items: center;
+  @media ${device.laptop} {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
