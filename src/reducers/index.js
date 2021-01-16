@@ -10,6 +10,9 @@ const initialState = {
   currentPage: 1,
   moviesPerPage: 8,
   isMenuOpen: false,
+  moviesFour: 4,
+  moviesEight: 8,
+  moviesTen: 10,
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -27,6 +30,7 @@ const moviesReducer = (state = initialState, action) => {
     SET_CURRENT_PAGE,
     SET_PATH,
     TOGGLE_MENU,
+    CHANGE_MOVIES_PER_PAGE,
   } = actionTypes;
   const { type, payload } = action;
 
@@ -134,6 +138,12 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         isMenuOpen: !state.isMenuOpen,
       };
+    case CHANGE_MOVIES_PER_PAGE:
+      return {
+        ...state,
+        moviesPerPage: payload,
+      };
+
     default:
       return {
         ...state,

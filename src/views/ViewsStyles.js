@@ -15,7 +15,13 @@ export const StyledTitleContainer = styled.div`
 export const StyledSectionTitle = styled.h3`
   font-weight: 500;
   padding-bottom: 5px;
+  margin-right: 5%;
   color: ${({ theme }) => theme.cream};
+  @media ${device.mobileS} {
+    width: 40%;
+    margin-right: 2%;
+    font-size: 15px;
+  }
 `;
 
 export const StyledMoviesList = styled.ul`

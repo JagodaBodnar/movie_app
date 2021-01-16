@@ -2,6 +2,10 @@ import React from "react";
 import {
   StyledPaginationContainer,
   StyledPageNumber,
+  StyledPrevButton,
+  StyledPrevIcon,
+  StyledNextButton,
+  StyledNextIcon,
 } from "./PaginationStyles";
 import { useSelector } from "react-redux";
 
@@ -16,8 +20,16 @@ const Pagination = ({ totalMovies, paginate }) => {
   ) {
     pageNumbers.push(index);
   }
+
   return (
     <StyledPaginationContainer>
+      <StyledPrevButton
+        onClick={() =>
+          currentPage > 1 ? paginate(currentPage - 1) : paginate(currentPage)
+        }
+      >
+        <StyledPrevIcon />
+      </StyledPrevButton>
       {pageNumbers.map((pageNumber) => {
         return (
           <StyledPageNumber
@@ -33,6 +45,15 @@ const Pagination = ({ totalMovies, paginate }) => {
           </StyledPageNumber>
         );
       })}
+      <StyledNextButton
+        onClick={() => {
+          currentPage < pageNumbers.length
+            ? paginate(currentPage + 1)
+            : paginate(currentPage);
+        }}
+      >
+        <StyledNextIcon />
+      </StyledNextButton>
     </StyledPaginationContainer>
   );
 };

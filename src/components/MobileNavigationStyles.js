@@ -103,11 +103,3 @@ export const StyledHamburger = styled.button`
       isMenuOpen ? "transform: rotate(0deg) scale(0.2, 0.2)" : ""};
   }
 `;
-
-export const StyledButtonMovileContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-`;

@@ -22,6 +22,7 @@ import {
 } from "./ViewsStyles";
 import Pagination from "../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
+import AmountOfMovies from "../components/AmountOfMovies";
 
 const TopRatedMovies = () => {
   const movies = useSelector((state) => state.movies);
@@ -53,6 +54,7 @@ const TopRatedMovies = () => {
     <>
       <StyledTitleContainer>
         <StyledSectionTitle>Top rated movies</StyledSectionTitle>
+        <AmountOfMovies />
         <Pagination
           moviesPerPage={moviesPerPage}
           totalMovies={movies.length}

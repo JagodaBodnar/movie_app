@@ -21,6 +21,7 @@ import {
 } from "./ViewsStyles";
 import Pagination from "../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
+import AmountOfMovies from "../components/AmountOfMovies";
 
 const PopularMovies = () => {
   const popularMovies = useSelector((state) => state.popularMovies);
@@ -59,6 +60,7 @@ const PopularMovies = () => {
     <>
       <StyledTitleContainer>
         <StyledSectionTitle>Popular movies</StyledSectionTitle>
+        <AmountOfMovies />
         <Pagination
           moviePerPage={moviesPerPage}
           currentPage={currentPage}

@@ -12,7 +12,7 @@ import {
   StyledTitle,
 } from "./MobileNavigationStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../actions";
+import { toggleMenu, setCurrentPage } from "../actions";
 
 const MobileNavigation = () => {
   const isMenuOpen = useSelector((state) => state.isMenuOpen);
@@ -48,6 +48,7 @@ const MobileNavigation = () => {
               to={routes.topRatedMovies}
               onClick={() => {
                 dispatch(toggleMenu());
+                dispatch(setCurrentPage());
               }}
             >
               Top rated movies
@@ -56,6 +57,7 @@ const MobileNavigation = () => {
               to={routes.popularMovies}
               onClick={() => {
                 dispatch(toggleMenu());
+                dispatch(setCurrentPage());
               }}
             >
               Popular movies

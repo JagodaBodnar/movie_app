@@ -14,6 +14,7 @@ const {
   SET_CURRENT_PAGE,
   SET_PATH,
   TOGGLE_MENU,
+  CHANGE_MOVIES_PER_PAGE,
 } = actionTypes;
 
 export const fetchMovies = (response) => {
@@ -98,5 +99,11 @@ export const setPath = (boolean) => {
 export const toggleMenu = () => {
   return {
     type: TOGGLE_MENU,
+  };
+};
+export const changeMoviesPerPage = (val) => {
+  return {
+    type: CHANGE_MOVIES_PER_PAGE,
+    payload: val,
   };
 };

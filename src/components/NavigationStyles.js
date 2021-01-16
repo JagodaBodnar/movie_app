@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { GiFilmSpool } from "react-icons/gi";
+import { device } from "../globalStyles/device";
 
 export const StyledNavigationContainer = styled.div`
   width: 90%;
@@ -22,7 +23,7 @@ export const StyledTitle = styled.h1`
   text-transform: uppercase;
   text-align: left;
   margin-left: 2%;
-  width: 30%;
+  width: 40%;
   font-family: "Dancing Script", cursive;
 `;
 export const StyledIcon = styled(GiFilmSpool)`
@@ -54,13 +55,21 @@ export const StyledLinksCategories = styled(NavLink)`
     color: ${({ theme }) => theme.hover};
   }
   margin-top: 15px;
-  font-size: 15px;
+  font-size: 12px;
   letter-spacing: 2px;
+  @media ${device.laptop} {
+    font-size: 15px;
+  }
 `;
 export const StyledDropdownList = styled.div`
   display: none;
   position: absolute;
-  width: 100%;
+  width: 180%;
+  left: -35%;
+  @media ${device.desktop} {
+    width: 120%;
+    left: -15%;
+  }
 `;
 export const StyledMoviesList = styled.ul`
   font-size: 20px;
