@@ -1,11 +1,17 @@
-# Getting Started with Create React App
+### Project description
 
 Application was created with [Create React App](https://github.com/facebook/create-react-app) for educational puproses.
+<br />
 App has been build using [Redux](https://redux.js.org/) and styled with [styled-components](https://styled-components.com/).
+<br />
 Data has been obtained from [TMDB](https://www.themoviedb.org/?language=pl) using [axios](https://www.npmjs.com/package/axios).
+<br />
+
+### Demo
+
 [Visualisation of the website](https://angry-lovelace-fdb20f.netlify.app/)
 
-## Application features
+### Application features
 
 Application is fully responsive and offers basic functionalities such as:
 

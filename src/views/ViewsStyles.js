@@ -11,6 +11,9 @@ export const StyledTitleContainer = styled.div`
   border-image-slice: 1;
   display: flex;
   border-image-source: linear-gradient(to right, #ce1632, #222831);
+  @media ${device.mobileS} {
+    width: 95%;
+  }
 `;
 export const StyledSectionTitle = styled.h3`
   font-weight: 500;
@@ -18,7 +21,7 @@ export const StyledSectionTitle = styled.h3`
   margin-right: 5%;
   color: ${({ theme }) => theme.cream};
   @media ${device.mobileS} {
-    width: 40%;
+    width: 38%;
     margin-right: 2%;
     font-size: 15px;
   }

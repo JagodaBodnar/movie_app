@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GiFilmSpool } from "react-icons/gi";
+
 export const StyledNavigationContainer = styled.div`
   width: 90%;
   position: fixed;
