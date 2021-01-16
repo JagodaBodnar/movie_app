@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GiFilmSpool } from "react-icons/gi";
+import { device } from "../globalStyles/device";
 
 export const StyledNavigationContainer = styled.div`
-  width: 90%;
+  width: 100%;
   position: fixed;
   top: 0;
-  left: 5%;
+  left: 0;
   display: flex;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 5%;
   text-align: center;
   justify-content: space-between;
   align-items: center;
