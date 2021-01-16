@@ -10,6 +10,8 @@ import {
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routing/Router";
 import MainTemplate from "./templates/MainTemplate";
+import { useDispatch, useSelector } from "react-redux";
+import { setPath } from "./actions";
 
 const App = ({
   fetchMovies,
@@ -58,11 +60,20 @@ const App = ({
       });
   };
 
+  const dispatch = useDispatch();
+  const checkPath = () => {
+    window.location.pathname === "/movies_top_rated" ||
+    window.location.pathname === "/movies_popular"
+      ? dispatch(setPath(true))
+      : dispatch(setPath(false));
+  };
+
   useEffect(() => {
     getTopRatedMovies();
     getPopularMovies();
     getPopularTVShows();
     getNowPlaying();
+    checkPath();
   }, []);
 
   return (

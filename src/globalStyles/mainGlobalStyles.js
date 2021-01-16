@@ -6,4 +6,5 @@ export const mainGlobalStyles = {
   lightBlue: "#d0e8f2",
   seaBlue: "#79a3b1",
   darkGray: "#222831",
+  white: "#fff",
 };

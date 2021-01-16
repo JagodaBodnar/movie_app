@@ -1,15 +1,20 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { GiFilmSpool } from "react-icons/gi";
 
 export const StyledNavigationContainer = styled.div`
-  width: 100%;
+  width: 90%;
+  position: fixed;
+  top: 0;
+  left: 5%;
   display: flex;
-  margin: 50px auto;
+  margin: 0 auto;
+  padding: 20px 0;
   text-align: center;
   justify-content: center;
   align-items: center;
-  min-height: 80px;
+  min-height: 15vh;
+  background-color: ${({ theme }) => theme.darkGray};
 `;
 export const StyledTitle = styled.h1`
   color: ${({ theme }) => theme.cream};
@@ -31,7 +36,7 @@ export const StyledLinkContainer = styled.div`
   text-transform: uppercase;
 `;
 
-export const StyledLinks = styled(Link)`
+export const StyledLinks = styled(NavLink)`
   text-decoration: none;
   font-size: 20px;
   color: ${({ theme }) => theme.cream};
@@ -41,7 +46,7 @@ export const StyledLinks = styled(Link)`
     color: ${({ theme }) => theme.main};
   }
 `;
-export const StyledLinksCategories = styled(Link)`
+export const StyledLinksCategories = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.cream};
   width: 100%;
@@ -70,7 +75,6 @@ export const StyledMoviesList = styled.ul`
   }
   &:hover > ${StyledDropdownList} {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

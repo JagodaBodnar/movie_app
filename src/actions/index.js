@@ -10,6 +10,10 @@ const {
   ADD_POPULAR_MOVIE_TO_FAVOURITE,
   ADD_TV_SHOW_TO_FAVOURITE,
   ADD_NOW_PLAYING_TO_FAVOURITE,
+  PAGINATE,
+  SET_CURRENT_PAGE,
+  SET_PATH,
+  TOGGLE_MENU,
 } = actionTypes;
 
 export const fetchMovies = (response) => {
@@ -68,5 +72,31 @@ export const removeMovieFromFavourite = (movie) => {
   return {
     type: REMOVE_MOVIE_FROM_FAVOURITE,
     payload: movie,
+  };
+};
+
+export const paginate = (pageNumber) => {
+  return {
+    type: PAGINATE,
+    payload: pageNumber,
+  };
+};
+
+export const setCurrentPage = () => {
+  return {
+    type: SET_CURRENT_PAGE,
+  };
+};
+
+export const setPath = (boolean) => {
+  return {
+    type: SET_PATH,
+    payload: boolean,
+  };
+};
+
+export const toggleMenu = () => {
+  return {
+    type: TOGGLE_MENU,
   };
 };

@@ -3,8 +3,11 @@ import {
   StyledPaginationContainer,
   StyledPageNumber,
 } from "./PaginationStyles";
+import { useSelector } from "react-redux";
 
-const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
+const Pagination = ({ totalMovies, paginate }) => {
+  const currentPage = useSelector((state) => state.currentPage);
+  const moviesPerPage = useSelector((state) => state.moviesPerPage);
   const pageNumbers = [];
   for (
     let index = 1;
@@ -17,8 +20,16 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
     <StyledPaginationContainer>
       {pageNumbers.map((pageNumber) => {
         return (
-          <StyledPageNumber key={pageNumber}>
-            <p onClick={() => paginate(pageNumber)}>{pageNumber}</p>
+          <StyledPageNumber
+            key={pageNumber}
+            style={
+              currentPage === pageNumber
+                ? { color: "#CE1632" }
+                : { color: `#eeeeee` }
+            }
+            onClick={() => paginate(pageNumber)}
+          >
+            {pageNumber}
           </StyledPageNumber>
         );
       })}

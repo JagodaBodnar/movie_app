@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import { addMovieToFavourite, removeMovieFromFavourite } from "../actions";
+import React from "react";
+import {
+  addMovieToFavourite,
+  removeMovieFromFavourite,
+  paginate,
+} from "../actions";
 import { FaHeart } from "react-icons/fa";
 import {
   StyledMovieImage,
@@ -21,17 +25,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 const TopRatedMovies = () => {
   const movies = useSelector((state) => state.movies);
+  const currentPage = useSelector((state) => state.currentPage);
+  const moviesPerPage = useSelector((state) => state.moviesPerPage);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage] = useState(8);
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   const dispatch = useDispatch();
+  const paginateMovies = (pageNumber) => {
+    dispatch(paginate(pageNumber));
+  };
   const handleFavourite = (title) => {
     movies.map((item) => {
       if (item.title === title) {
@@ -52,7 +56,8 @@ const TopRatedMovies = () => {
         <Pagination
           moviesPerPage={moviesPerPage}
           totalMovies={movies.length}
-          paginate={paginate}
+          paginate={paginateMovies}
+          currentPage={currentPage}
         />
       </StyledTitleContainer>
       <StyledMoviesList>

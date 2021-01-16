@@ -7,6 +7,9 @@ const initialState = {
   tvShows: [],
   comingSoon: [],
   favourite: [],
+  currentPage: 1,
+  moviesPerPage: 8,
+  isMenuOpen: false,
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -20,6 +23,10 @@ const moviesReducer = (state = initialState, action) => {
     ADD_POPULAR_MOVIE_TO_FAVOURITE,
     ADD_TV_SHOW_TO_FAVOURITE,
     ADD_NOW_PLAYING_TO_FAVOURITE,
+    PAGINATE,
+    SET_CURRENT_PAGE,
+    SET_PATH,
+    TOGGLE_MENU,
   } = actionTypes;
   const { type, payload } = action;
 
@@ -107,7 +114,26 @@ const moviesReducer = (state = initialState, action) => {
         popularMovies: [...state.popularMovies],
         nowPlaying: [...state.nowPlaying],
       };
-
+    case PAGINATE:
+      return {
+        ...state,
+        currentPage: payload,
+      };
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: 1,
+      };
+    case SET_PATH:
+      return {
+        ...state,
+        path: payload,
+      };
+    case TOGGLE_MENU:
+      return {
+        ...state,
+        isMenuOpen: !state.isMenuOpen,
+      };
     default:
       return {
         ...state,

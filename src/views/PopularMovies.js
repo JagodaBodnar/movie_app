@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   addPopularMovieToFavourite,
   removeMovieFromFavourite,
+  paginate,
 } from "../actions";
 import { FaHeart } from "react-icons/fa";
 import {
@@ -23,24 +24,23 @@ import { useDispatch, useSelector } from "react-redux";
 
 const PopularMovies = () => {
   const popularMovies = useSelector((state) => state.popularMovies);
+  const currentPage = useSelector((state) => state.currentPage);
+  const moviesPerPage = useSelector((state) => state.moviesPerPage);
   popularMovies.sort((item, item2) => {
     return item2.vote_average - item.vote_average;
   });
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage] = useState(8);
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = popularMovies.slice(
     indexOfFirstMovie,
     indexOfLastMovie
   );
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const dispatch = useDispatch();
+  const paginateMovies = (pageNumber) => {
+    dispatch(paginate(pageNumber));
   };
 
-  const dispatch = useDispatch();
   const handleFavourite = (title) => {
     popularMovies.map((item) => {
       if (item.title === title) {
@@ -60,9 +60,10 @@ const PopularMovies = () => {
       <StyledTitleContainer>
         <StyledSectionTitle>Popular movies</StyledSectionTitle>
         <Pagination
-          moviesPerPage={moviesPerPage}
+          moviePerPage={moviesPerPage}
+          currentPage={currentPage}
           totalMovies={popularMovies.length}
-          paginate={paginate}
+          paginate={paginateMovies}
         />
       </StyledTitleContainer>
       <StyledMoviesList>

@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 const StyledChildrenContainer = styled.div`
   min-height: 69vh;
+  margin-top: 20vh;
 `;
 
 const MainTemplate = ({ children }) => {
