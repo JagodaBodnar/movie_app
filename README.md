@@ -19,6 +19,9 @@ Application is fully responsive and offers basic functionalities such as:
 - pagination based on selected amounts of movies per page
 - displaying movie details
 - adding/removing movies to/from favourites
+- blog
+- comments section
+- data are connected and updated to/with firebase
 
 ## Available Scripts
 
