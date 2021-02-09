@@ -2,13 +2,13 @@ import firebase from "firebase";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBrYVp2U4PpRFWTMm5qVWOsQnEDmGopYHY",
-  authDomain: "loginblog-50aa4.firebaseapp.com",
-  databaseURL: "https://loginblog-50aa4.firebaseio.com",
-  projectId: "loginblog-50aa4",
-  storageBucket: "loginblog-50aa4.appspot.com",
-  messagingSenderId: "460448621237",
-  appId: "1:460448621237:web:03c933862ae775903dd4fc",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
