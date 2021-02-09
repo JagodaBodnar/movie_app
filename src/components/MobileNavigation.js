@@ -62,7 +62,14 @@ const MobileNavigation = () => {
             >
               Popular movies
             </StyledNavigationLinks>
-
+            <StyledNavigationLinks
+              to={routes.blog}
+              onClick={() => {
+                dispatch(toggleMenu());
+              }}
+            >
+              Blog
+            </StyledNavigationLinks>
             <StyledNavigationLinks
               to={routes.favouriteMovies}
               onClick={() => {

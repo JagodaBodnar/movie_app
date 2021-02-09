@@ -120,6 +120,7 @@ export const StyledCommentParagraph = styled.p`
 export const StyledContainers = styled.div`
   width: 80%;
   margin: 0 auto;
+  z-index: ${({ isMenuOpen }) => (isMenuOpen ? "-1" : "0")};
 `;
 
 export const StyledCommentsButtons = styled.button`

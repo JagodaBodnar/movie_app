@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addComment,
   saveEditedComment,
@@ -42,6 +42,7 @@ import { MdModeEdit } from "react-icons/md";
 import { addAndChangeComment } from "../firebase/firebaseUtils";
 
 const CommentsSection = ({ articleId, comments }) => {
+  const isMenuOpen = useSelector((state) => state.isMenuOpen);
   const dispatch = useDispatch();
 
   const handleFormSubmit = (e) => {
@@ -156,7 +157,7 @@ const CommentsSection = ({ articleId, comments }) => {
         </StyledCommentsForm>
       </StyledCommentsContainer>
 
-      <StyledContainers>
+      <StyledContainers isMenuOpen={isMenuOpen}>
         {comments.map((singleComment) => {
           const { name, commentId, comment, edit, answer } = singleComment;
           return (
