@@ -1,6 +1,7 @@
 export const mainGlobalStyles = {
   main: "#CE1632",
   cream: "#eeeeee",
+  gray: "#888",
   hover: "#f7798c",
   star: "#ffd369",
   lightBlue: "#d0e8f2",

@@ -6,7 +6,7 @@ import {
   StyledPrevIcon,
   StyledNextButton,
   StyledNextIcon,
-} from "./PaginationStyles";
+} from "./styles/PaginationStyles";
 import { useSelector } from "react-redux";
 
 const Pagination = ({ totalMovies, paginate }) => {

@@ -9,7 +9,8 @@ import {
   StyledSectionTitle,
   StyledStarIcon,
   StyledLabel,
-} from "./DetailsStyles";
+} from "./styles/DetailsStyles";
+import moment from "moment";
 
 const MovieDetails = (props) => {
   const {
@@ -19,12 +20,7 @@ const MovieDetails = (props) => {
     poster_path,
     overview,
   } = props.location.state;
-  const transform = Date.parse(release_date);
-  const dates = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "2-digit",
-  }).format(transform);
+  const dates = moment(release_date).format("LL");
   return (
     <>
       <StyledTitleContainer>
@@ -34,7 +30,7 @@ const MovieDetails = (props) => {
         <StyledFavouriteListLink>
           <StyledImg
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-            alt="movie img"
+            alt={title}
           />
         </StyledFavouriteListLink>
         <StyledDetailsContainer>

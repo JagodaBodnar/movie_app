@@ -3,5 +3,5 @@ export const routes = {
   favouriteMovies: "/favourite_movies",
   topRatedMovies: "/movies_top_rated",
   popularMovies: "/movies_popular",
-  TVShows: "/tv_show",
+  blog: "/blog",
 };

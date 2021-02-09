@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { GiFilmSpool } from "react-icons/gi";
-import { device } from "../globalStyles/device";
+import { device } from "../../globalStyles/device";
 
 export const StyledNavigationContainer = styled.div`
   width: 90%;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import { device } from "../globalStyles/device";
+import { device } from "../../globalStyles/device";
 
 export const StyledPaginationContainer = styled.ul`
   width: 50%;

@@ -19,7 +19,7 @@ import {
   StyledStarIcon,
   StyledDetailsTitle,
   StyledFavouriteOn,
-} from "./ViewsStyles";
+} from "./styles/ViewsStyles";
 import Pagination from "../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import AmountOfMovies from "../components/AmountOfMovies";
@@ -90,7 +90,7 @@ const TopRatedMovies = () => {
               >
                 <StyledImg
                   src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                  alt="movie img"
+                  alt={title}
                 />
               </StyledMovieImage>
               <StyledDetailsContainer>

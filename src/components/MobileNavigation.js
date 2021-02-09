@@ -10,7 +10,7 @@ import {
   StyledNavigationContainer,
   StyledIcon,
   StyledTitle,
-} from "./MobileNavigationStyles";
+} from "./styles/MobileNavigationStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu, setCurrentPage } from "../actions";
 
@@ -29,9 +29,9 @@ const MobileNavigation = () => {
           onClick={() => dispatch(toggleMenu())}
           isMenuOpen={isMenuOpen}
         >
-          <StyledSpan isMenuOpen={isMenuOpen}></StyledSpan>
-          <StyledSpan isMenuOpen={isMenuOpen}></StyledSpan>
-          <StyledSpan isMenuOpen={isMenuOpen}></StyledSpan>
+          <StyledSpan isMenuOpen={isMenuOpen} />
+          <StyledSpan isMenuOpen={isMenuOpen} />
+          <StyledSpan isMenuOpen={isMenuOpen} />
         </StyledHamburger>
         <StyledNavigationOverlay isMenuOpen={isMenuOpen}>
           <StyledNavigationList>

@@ -4,7 +4,7 @@ import {
   StyledSelectButton,
   StyledOptionButton,
   StyledSelectContainer,
-} from "./AmountOfMoviesStyles";
+} from "./styles/AmountOfMoviesStyles";
 import { changeMoviesPerPage, setCurrentPage } from "../actions";
 
 const AmountOfMovies = () => {
@@ -18,7 +18,7 @@ const AmountOfMovies = () => {
       <StyledSelectContainer>
         <StyledSelectButton
           onChange={(e) => {
-            dispatch(changeMoviesPerPage(e.target.value));
+            dispatch(changeMoviesPerPage(parseInt(e.target.value)));
             dispatch(setCurrentPage());
           }}
           defaultValue={moviesEight}

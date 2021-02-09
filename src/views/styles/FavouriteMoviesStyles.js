@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import { device } from "../globalStyles/device";
+import { device } from "../../globalStyles/device";
 
 export const StyledTitleContainer = styled.div`
   width: 80%;

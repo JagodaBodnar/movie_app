@@ -15,7 +15,7 @@ import {
   StyledMoviesListContainer,
   StyledStarIcon,
   StyledFavouriteOn,
-} from "./ViewsStyles";
+} from "./styles/ViewsStyles";
 import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {

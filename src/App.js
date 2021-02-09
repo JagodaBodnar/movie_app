@@ -4,21 +4,17 @@ import { connect } from "react-redux";
 import {
   fetchMovies,
   fetchPopularMovies,
-  fetchTVShows,
   fetchNowPlaying,
+  getArticlesData,
 } from "./actions";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routing/Router";
 import MainTemplate from "./templates/MainTemplate";
 import { useDispatch, useSelector } from "react-redux";
 import { setPath } from "./actions";
+import { articlesCollection } from "./firebase/firebaseUtils";
 
-const App = ({
-  fetchMovies,
-  fetchPopularMovies,
-  fetchTVShows,
-  fetchNowPlaying,
-}) => {
+const App = ({ fetchMovies, fetchPopularMovies, fetchNowPlaying }) => {
   const getTopRatedMovies = () => {
     axios
       .get(
@@ -39,16 +35,7 @@ const App = ({
         fetchPopularMovies(results);
       });
   };
-  const getPopularTVShows = () => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_MOVIE_DATABASE_KEY}`
-      )
-      .then((response) => {
-        const { results } = response.data;
-        fetchTVShows(results);
-      });
-  };
+
   const getNowPlaying = () => {
     axios
       .get(
@@ -71,10 +58,36 @@ const App = ({
   useEffect(() => {
     getTopRatedMovies();
     getPopularMovies();
-    getPopularTVShows();
     getNowPlaying();
     checkPath();
   }, []);
+
+  //blog
+
+  useEffect(() => {
+    const subscribe = articlesCollection.onSnapshot((snapshot) => {
+      const dataFromArticlesCollection = snapshot.docs.map((document) => {
+        return {
+          id: document.id,
+          ...document.data(),
+        };
+      });
+
+      dispatch(getArticlesData(dataFromArticlesCollection));
+    });
+
+    return () => subscribe;
+  }, []);
+
+  const selectedArticle = useSelector((state) => state.selectedArticle);
+
+  const setSelectedArticleToLocalStorage = () => {
+    localStorage.setItem("selectedArticle", JSON.stringify(selectedArticle));
+  };
+
+  useEffect(() => {
+    setSelectedArticleToLocalStorage();
+  }, [selectedArticle]);
 
   return (
     <>
@@ -91,7 +104,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchMovies: (response) => dispatch(fetchMovies(response)),
     fetchPopularMovies: (response) => dispatch(fetchPopularMovies(response)),
-    fetchTVShows: (response) => dispatch(fetchTVShows(response)),
     fetchNowPlaying: (response) => dispatch(fetchNowPlaying(response)),
   };
 };

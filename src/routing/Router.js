@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import MovieDetails from "../components/MovieDetails";
-import TVShowDetails from "../components/TVShowDetails";
+import SingleArticle from "../components/SingleArticle";
 import { routes } from "../routes";
+import Blog from "../views/Blog";
 import FavouriteMovies from "../views/FavouriteMovies";
 import Home from "../views/Home";
 import PopularMovies from "../views/PopularMovies";
-// import PopularTVShows from "../views/PopularTVShows";
 import TopRatedMovies from "../views/TopRatedMovies";
 
 const Router = () => {
@@ -17,8 +17,8 @@ const Router = () => {
       <Route path={routes.topRatedMovies} component={TopRatedMovies} />
       <Route path={routes.favouriteMovies} component={FavouriteMovies} />
       <Route path="/movie/:name" component={MovieDetails} />
-      {/* <Route path={routes.TVShows} component={PopularTVShows} /> */}
-      <Route path="/tv/:name" component={TVShowDetails} />
+      <Route exact path={routes.blog} component={Blog} />
+      <Route path="/blog/:name" component={SingleArticle} />
     </Switch>
   );
 };

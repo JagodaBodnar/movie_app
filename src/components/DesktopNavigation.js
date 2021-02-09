@@ -1,6 +1,6 @@
 import React from "react";
 import { routes } from "../routes";
-import { setCurrentPage, setPath } from "../actions";
+import { changeMoviesPerPage, setCurrentPage, setPath } from "../actions";
 import {
   StyledTitle,
   StyledNavigationContainer,
@@ -10,18 +10,20 @@ import {
   StyledDropdownList,
   StyledLinksCategories,
   StyledIcon,
-} from "./NavigationStyles";
+} from "./styles/NavigationStyles";
 import { useDispatch, useSelector } from "react-redux";
+import { mainGlobalStyles } from "../globalStyles/mainGlobalStyles";
 
 const DesktopNavigation = () => {
   const path = useSelector((state) => state.path);
+  const moviesEight = useSelector((state) => state.moviesEight);
   const dispatch = useDispatch();
 
   const active = {
-    color: "#CE1632",
+    color: mainGlobalStyles.main,
   };
   const inactive = {
-    color: "#eeeeee",
+    color: mainGlobalStyles.cream,
   };
   return (
     <StyledNavigationContainer>
@@ -34,7 +36,7 @@ const DesktopNavigation = () => {
           to={routes.home}
           activeStyle={active}
           onClick={() => dispatch(setPath(false))}
-          exact={true}
+          exact
         >
           Home
         </StyledLinks>
@@ -44,22 +46,32 @@ const DesktopNavigation = () => {
             <StyledLinksCategories
               to={routes.topRatedMovies}
               activeStyle={active}
-              onClick={() => dispatch(setCurrentPage())}
+              onClick={() => {
+                dispatch(setCurrentPage());
+                dispatch(changeMoviesPerPage(moviesEight));
+              }}
             >
               Top rated
             </StyledLinksCategories>
             <StyledLinksCategories
               to={routes.popularMovies}
               activeStyle={active}
-              onClick={() => dispatch(setCurrentPage())}
+              onClick={() => {
+                dispatch(setCurrentPage());
+                dispatch(changeMoviesPerPage(moviesEight));
+              }}
             >
               Popular
             </StyledLinksCategories>
           </StyledDropdownList>
         </StyledMoviesList>
-        {/* <StyledLinks to={routes.TVShows} activeStyle={{ color: "#CE1632" }}>
-            TV Shows
-          </StyledLinks> */}
+        <StyledLinks
+          to={routes.blog}
+          activeStyle={active}
+          onClick={() => dispatch(setPath(false))}
+        >
+          Blog
+        </StyledLinks>
         <StyledLinks
           to={routes.favouriteMovies}
           activeStyle={active}

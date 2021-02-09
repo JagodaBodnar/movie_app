@@ -13,8 +13,9 @@ import {
   StyledStarIcon,
   StyledListEmpty,
   StyledFavouriteContainer,
-} from "./FavouriteMoviesStyles";
+} from "./styles/FavouriteMoviesStyles";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 const FavouriteMovies = () => {
   const favourite = useSelector((state) => state.favourite);
@@ -37,41 +38,24 @@ const FavouriteMovies = () => {
               release_date,
               vote_average,
               poster_path,
-              original_name,
-              first_air_date,
               overview,
               id,
             } = item;
+            const dates = moment(release_date).format("LL");
             return (
               <StyledFavouriteContainer key={id}>
                 <StyledFavouriteListLink
-                  to={
-                    item.title
-                      ? {
-                          pathname: `/movie/${title}`,
-                          state: {
-                            title,
-                            release_date,
-                            vote_average,
-                            poster_path,
-                            first_air_date,
-                            overview,
-                            id,
-                          },
-                        }
-                      : {
-                          pathname: `/tv/${original_name}`,
-                          state: {
-                            title,
-                            release_date,
-                            vote_average,
-                            poster_path,
-                            first_air_date,
-                            overview,
-                            id,
-                          },
-                        }
-                  }
+                  to={{
+                    pathname: `/movie/${title}`,
+                    state: {
+                      title,
+                      release_date,
+                      vote_average,
+                      poster_path,
+                      overview,
+                      id,
+                    },
+                  }}
                 >
                   <StyledImg
                     src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
@@ -81,10 +65,7 @@ const FavouriteMovies = () => {
                 <StyledDetailsContainer>
                   <StyledDetails>
                     <StyledLabel>Title: </StyledLabel>
-                    <p>
-                      {title}
-                      {original_name}
-                    </p>
+                    <p>{title}</p>
                   </StyledDetails>
                   <StyledDetails>
                     <StyledLabel>Overview: </StyledLabel>
@@ -92,8 +73,7 @@ const FavouriteMovies = () => {
                   </StyledDetails>
                   <StyledDetails>
                     <StyledLabel>Release date: </StyledLabel>
-                    {release_date}
-                    {first_air_date}
+                    {dates}
                   </StyledDetails>
                   <StyledDetails>
                     <StyledStarIcon />
@@ -102,10 +82,7 @@ const FavouriteMovies = () => {
                 </StyledDetailsContainer>
                 <StyledButton
                   onClick={() => {
-                    dispatch(
-                      removeMovieFromFavourite(title),
-                      removeMovieFromFavourite(original_name)
-                    );
+                    dispatch(removeMovieFromFavourite(title));
                   }}
                 >
                   Remove from favourite

@@ -18,7 +18,7 @@ import {
   StyledVoteParagraph,
   StyledStarIcon,
   StyledFavouriteOn,
-} from "./ViewsStyles";
+} from "./styles/ViewsStyles";
 import Pagination from "../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import AmountOfMovies from "../components/AmountOfMovies";
@@ -46,10 +46,8 @@ const PopularMovies = () => {
     popularMovies.map((item) => {
       if (item.title === title) {
         if (item.adult === true) {
-          console.log("imhere");
           return dispatch(removeMovieFromFavourite(title));
         } else if (item.adult === false) {
-          console.log("inope ere");
           return dispatch(addPopularMovieToFavourite(title));
         }
       }
