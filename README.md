@@ -17,10 +17,13 @@ Application is fully responsive and offers basic functionalities such as:
 
 - displaying list of movies divided to categories
 - pagination based on selected amounts of movies per page
+![Demo](https://user-images.githubusercontent.com/49833192/107700734-368e2680-6cb8-11eb-809c-8316b49304d3.gif)
 - displaying movie details
 - adding/removing movies to/from favourites
+![DEMO](https://user-images.githubusercontent.com/49833192/107573749-3f1a2a80-6bee-11eb-8390-5c838fae7eae.gif)
 - blog
-- comments section
+- comments section (adding comment, answering to comment, option to edit comment and cancel edit, deleting comments currently belongs only to blogadmin)
+![DEMO](https://user-images.githubusercontent.com/49833192/107701543-5c67fb00-6cb9-11eb-912d-a47961ea6a11.gif)
 - data are connected and updated to/with firebase
 
 ## Available Scripts
