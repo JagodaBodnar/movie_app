@@ -22,7 +22,7 @@ Application is fully responsive and offers basic functionalities such as:
 - adding/removing movies to/from favourites
 ![DEMO](https://user-images.githubusercontent.com/49833192/107573749-3f1a2a80-6bee-11eb-8390-5c838fae7eae.gif)
 - blog
-- comments section (adding comment, answering to comment, option to edit comment and cancel edit, deleting comments currently belongs only to blogadmin)
+- comments section (adding comment, answering to comment, option to edit comment and cancel it, please note that deleting comments currently belongs only to admin)
 ![DEMO](https://user-images.githubusercontent.com/49833192/107701543-5c67fb00-6cb9-11eb-912d-a47961ea6a11.gif)
 - data are connected and updated to/with firebase
 
